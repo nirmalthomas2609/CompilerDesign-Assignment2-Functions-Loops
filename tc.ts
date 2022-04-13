@@ -241,7 +241,9 @@ export function tcExpression(expression: Expr<any>, masterEnv: MasterEnv): Expr<
         case "id":
             if ((localEnv === undefined || !localEnv.vars.has(expression.name)) && (!globalEnv.vars.has(expression.name)))
                 throw new Error(`TypeError: Undefined variable ${expression.name}`);
-            const expressionType = getReturnType(localEnv !== undefined && localEnv.vars.has(expression.name) ? localEnv.vars.get(expression.name) : globalEnv.vars.get(expression.name));
+            const expressionType = 
+                getReturnType(localEnv !== undefined && localEnv.vars.has(expression.name) 
+                ? localEnv.vars.get(expression.name) : globalEnv.vars.get(expression.name));
             return { ...expression, t: expressionType };
         case "UnaryOp":
             var narg: Expr<Type> = tcExpression(expression.arg, masterEnv);
