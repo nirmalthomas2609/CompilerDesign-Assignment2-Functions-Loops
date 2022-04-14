@@ -118,7 +118,7 @@ export function tcStmt(stmt: Stmt<any>, masterEnv: MasterEnv): Stmt<Type> {
                 throw new Error(`TypeError: Undefined variable ${stmt.name}`);
             }
             const assignedExpression = tcExpression(stmt.value, masterEnv);
-            const variableType = (globalEnv.vars.has(stmt.name)) ? globalEnv.vars.get(stmt.name) : (localEnv.vars.get(stmt.name));
+            const variableType = (localEnv !== undefined && localEnv.vars.has(stmt.name)) ? localEnv.vars.get(stmt.name) : (globalEnv.vars.get(stmt.name));
             if (assignedExpression.t !== variableType) {
                 throw new Error(`TypeError: Cannot assign expression of type ${assignedExpression.t} to ${variableType}`);
             }

@@ -5,7 +5,7 @@ import {compile} from "./compiler";
 
 import * as fs from 'fs';
 import { tcProgram } from "./tc";
-const buffer = fs.readFileSync('source2.py','utf8');
+const buffer = fs.readFileSync('cli-test.py','utf8');
 
 // use the toString() method to convert
 // Buffer into String
